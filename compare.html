@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Access Control Policy Languages</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #e9ecef;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      color: #007bff;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      table-layout: fixed; /* Force fixed table layout */
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+    }
+    td {
+      background-color: #f8f9fa;
+      text-align: left;  /* Align text in cells to the left */
+      word-wrap: break-word; /* Enable text wrapping */
+      white-space: normal;  /* Allow text to wrap */
+    }
+
+    /* Reduce width of the "Comparison Parameter" column */
+    th:first-child, td:first-child {
+      width: 10%;  /* Set the desired width for the first column */
+      word-wrap: break-word;  /* Allow the text to wrap within the column */
+      white-space: normal;    /* Ensure wrapping */
+      font-weight: bold;  /* Bold the text in the first column */
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Comparison of Selected Access Control Policy Languages</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Comparison Parameter</th>
+      <!-- Language headers will be added dynamically -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Comparison rows will be added dynamically -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Retrieve selected languages from local storage
+  const selectedLanguages = JSON.parse(localStorage.getItem('selectedLanguages'));
+
+  // Mock data for language details (replace with actual data)
+  const languageDetails = {
+    'XACML': {
+      description: 'eXtensible Access Control Markup Language, a standard for expressing access control policies.',
+      applicability: 'An XML-based specification language is used to express access control policies by defining the rules and supporting access control process architecture to execute them.',
+      operational_efficiency: 'Less efficient because policy is loaded into memory for each decision and then evaluated.',
+      policy_definition: 'Policies are defined using logical formulas with attribute values.',
+      policy_support_for_the_DAC: 'While XACML has the theoretical capability to implement DAC policies, its practical efficiency is limited.',
+      policy_support_for_the_MAC: 'XACML’s strength may be in the expression non-confinement MAC policies.',
+      environmental_attributes: 'Considered in policy expression.',
+      history_based_policies: 'Not possible to express.',
+      per_object_review_and_per_user_review_of_combined_policies: 'Not supported.',
+      runtime_changes_of_access_control_policies: 'Not Supported.',
+      adoption: 'Widespread adoption due to wider support.',
+      policy_file_extension: '.xml/.xacml',
+      developed_by: 'Organization for the Advancement of Structured Information Standards.',
+      major_implementation: 'Axiomatics, Authzforce',
+      policy_expression: 'An external delegation model is used to support some decentralized policy administration.',
+      kind_of_language_used_to_write_policy: 'XML based',
+      security: 'The complexity makes secure deployment difficult; however, increased use and experience may mitigate this risk.',
+      gui_based: 'No',
+      sandbox_to_test_policies_provided:'No',
+      Administration_and_Management_of_Policies_and_Attributes: 'XACML does not support administrator tools review the access control policy and verify permission granted to the subject for access to the object. More support is also needed to visualize and demonstrate the policy features such as delegation, overrides, and revocations.'
+    },
+    'NGAC': {
+      description: 'Next Generation Access Control.',
+      applicability: 'A policy framework based on a graph decision model where access control policy is defined in terms of users DAG, objects DAG, and process (function) to establish the association between them while a user requests to access the object.',
+      operational_efficiency: 'The NGAC engine loads a policy into memory at the start of the PDP module and allows the policy to be updated at runtime. NGAC also supports an efficient approach to policy handling at runtime and allows for linear scaling.',
+      policy_definition: 'For policy definition, NGAC employs enumeration, which involves configurations of relations containing values as terms.',
+      policy_support_for_the_DAC: 'NGAC provides an administrative policy tool to create DAG-based policies.',
+      policy_support_for_the_MAC: 'Non-confinement MAC policies that NGAC does not accommodate. However, NGAC supports confinement-dependent MAC controls.',
+      environmental_attributes: 'Not considered in policy expression.',
+      history_based_policies: 'Possible to express.',
+      per_object_review_and_per_user_review_of_combined_policies: 'Efficiently supported.',
+      runtime_changes_of_access_control_policies: 'Supported.',
+
+      adoption: 'Support may be limited to NGAC adoption.',
+      policy_file_extension: '__',
+      developed_by: 'National Institute of Standards and Technology (NIST)',
+      major_implementation: 'Tetrate Q, Tetrate Service Bridge',
+      policy_expression: 'NGAC supports a DAG-based policy represented with minimal metadata and a history-based policy. However, more support is needed to define environmental attributes and create a rule with a broader range of attribute types.',
+      kind_of_language_used_to_write_policy: 'Relation based',
+      security: 'It is technically difficult to ensure complete secure deployment, especially with limited technical implementation references and expertise.',
+      gui_based: 'Graph-based',
+      sandbox_to_test_policies_provided:'No',
+      Administration_and_Management_of_Policies_and_Attributes: 'NGAC provides a standard policy administration interface for managing the attributes and supporting the creation of efficient algorithms for user and object review. NGAC is designed to support dynamic situations and optimize policy for execution. NGAC also supports flexibly representing dynamic access control decisions.'
+    },
+    'Polar': {
+      description: 'Polar.',
+      applicability: 'Polar language is developed based on functional programming language and declarative language to define the authorization logic-specific criteria.',
+      operational_efficiency: 'Oso Cloud is highly optimized for generating decisions, and the entire process(excluding network time) is on the order of single-digit milliseconds per request.',
+      policy_definition: 'Policies are defined using logical connectives in terms of name, parameter list and an optional body.',
+      policy_support_for_the_DAC: 'Oso is used to define custom rule modeling patterns by effectively expressing DAC-based policy.',
+      policy_support_for_the_MAC: 'Oso can configure all mandatory access control policies and allow users to modify facts for discretionary access control. DAC vs MAC are distinctions that generally don’t come up with Oso.',
+      environmental_attributes: 'Considered in policy expression.',
+      history_based_policies: 'Not possible to express.',
+      per_object_review_and_per_user_review_of_combined_policies: 'Supported.',
+      runtime_changes_of_access_control_policies: 'Supported with enhancing feature to update the facts of policy dynamically, which then affects access control via logic.',
+
+      adoption: 'Authorization as a service provided by Oso Cloud for implementation in the Application.',
+      policy_file_extension: '.polar',
+      developed_by: 'Oso cloud',
+      major_implementation: 'Oso Cloud',
+      policy_expression: 'The polar supports to define the policy expression through the library in the app/main.polar file. Policy expression can be applied to request, resource, or field levels.',
+      kind_of_language_used_to_write_policy: 'Declarative and Logic Programming Language',
+      security: 'An access control policy is expressed in polar language, and users use an application client that allows the subject to access the resources securely using Oso’s authorization-as-a-service.',
+      gui_based: 'Yes',
+      sandbox_to_test_policies_provided:'Yes',
+      Administration_and_Management_of_Policies_and_Attributes: 'Used policy file, namely app/main.polar. The policy file is defined through the administrator by using expressive policy syntax.'
+    },
+    'SAPL': {
+      description: 'Streaming Attribute Policy Language.',
+      applicability: 'SAPL is designed based on a publish and subscription protocol to enable event-driven architecture where policy is expressed using JSON-based policy language. SAPL is suitable for defining the access control policy to allow data stream access in real-time based on reactive programming patterns.',
+      operational_efficiency: 'SAPL defines access control policy language using JSON-based policy language and deploys it using a publish-subscribe protocol. SAPL is best suited for data-stream applications and interactive applications with the requirement for low-latency authorization.',
+      policy_definition: 'The structure of a SAPL policy is defined using elements as an import (optional) and a name. an entitlement, a target expression (optional), a body (optional), an obligation (optional), an advice (optional), and a transformation (optional).',
+      policy_support_for_the_DAC: 'SAPL supports DAC to express the policy by assigning access rights based on rules specified by users in terms of defining RBAC.',
+      policy_support_for_the_MAC: 'A SAPL supports MAC policy by defining access rights based on regulations by a central authority.',
+      environmental_attributes: 'An authorization subscription request contains an attribute with the names of the environment with a value that can be any JSON value.',
+      history_based_policies: 'Not supported directly, but it can be implemented by extending the functionality of PDP APIs as use of HTTP server-sent events (SSE) API.',
+      per_object_review_and_per_user_review_of_combined_policies: 'Supported in terms of defining combined algorithms for policy set.',
+      runtime_changes_of_access_control_policies: 'Supported through reactive programming patterns with a publish-subscribe protocol.',
+
+      adoption: 'SAPL provides broader development support for implementing the attribute-based authorization frame- work for interactive and data stream-based applications, including session-level authorization.',
+      policy_file_extension: '.sapl',
+      developed_by: 'Fraunhofer Institute for Open Communication Systems (FOKUS)',
+      major_implementation: 'SAPL',
+      policy_expression: 'A JSON-based policy language uses a set of name/value pairs to define a JSON object consisting of subject, action, resource, and environment attributes.',
+      kind_of_language_used_to_write_policy: 'Domain-specific language (DSL) for expressing access control policies and JSON-based language for describing authorization subscription request',
+      security: 'SAPL provides configured security model as per the PDP implementation. An embedded PDP with embedded PRP can use the file system-based security to store and access the policy. On another configuration variant, the SAPL server community allows access to the PDP service through a secure and authenticated TLS connection with an exposed HTTPS endpoint.',
+      gui_based: 'No',
+      sandbox_to_test_policies_provided:'Yes',
+      Administration_and_Management_of_Policies_and_Attributes: 'The PAP module of SAPL provides an administrator interface that allows the policy administrators to manage the policy. The interface is provided as per two types of implementations of PDP: 1) embedded PDP with an embedded PRP and 2) embedded PDP with the resource PRP.'
+    }
+  };
+
+  // Populate the table with selected languages and their details
+  const tableHead = document.querySelector('table thead tr');
+  const tableBody = document.querySelector('table tbody');
+
+  // Add language headers
+  selectedLanguages.forEach(language => {
+    const th = document.createElement('th');
+    th.textContent = language;
+    tableHead.appendChild(th);
+  });
+
+  // Create rows for each comparison parameter
+  const parameters = ['description', 'applicability', 'operational_efficiency',
+                      'policy_definition',
+                      'policy_support_for_the_DAC',
+                      'policy_support_for_the_MAC',
+                      'environmental_attributes',
+                      'history_based_policies',
+                      'per_object_review_and_per_user_review_of_combined_policies',
+                      'runtime_changes_of_access_control_policies',
+                      'adoption',
+                      'policy_file_extension',
+                      'developed_by',
+                      'major_implementation',
+                      'policy_expression',
+                      'kind_of_language_used_to_write_policy',
+                      'security',
+                      'gui_based',
+                      'sandbox_to_test_policies_provided',
+                      'Administration_and_Management_of_Policies_and_Attributes'
+  ];
+  parameters.forEach(parameter => {
+    const tr = document.createElement('tr');
+    const tdParameter = document.createElement('td');
+    tdParameter.innerHTML = `<strong>${parameter.charAt(0).toUpperCase() + parameter.slice(1)}</strong>`;
+    tr.appendChild(tdParameter);
+
+    // Add a column for each selected language
+    selectedLanguages.forEach(language => {
+      const td = document.createElement('td');
+      const details = languageDetails[language] || {};
+      td.textContent = details[parameter] || 'N/A';
+      tr.appendChild(td);
+    });
+
+    tableBody.appendChild(tr);
+  });
+</script>
+</body>
+</html>

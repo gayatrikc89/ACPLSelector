@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Control Policy Language Selector</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #e9ecef;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    h1, h3 {
+      color: #007bff;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+    select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+    button {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    td {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Access Control Policy Language for ABAC Selector</h1>
+  <p>Specify your preferences to find the most suitable Access Control policy Language (ACPL) for your needs:</p>
+  <form id="selectionForm">
+    <div class="section">
+      <h3>Select Your Preferences Design Construct</h3>
+      <div class="form-group">
+        <label for="Resource/Object">Resource/Object</label>
+        <select id="Resource/Object" name="Resource/Object">
+          <option value="Data-content">Data-content</option>
+          <option value="Indirect to data-content">Indirect to data-content</option>
+          <option value="Streamed session based content">Streamed session based content</option>
+          <option value="Streamed data-content">Streamed data-content</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Policy Definition">Policy Definition</label>
+        <select id="Policy Definition" name="Policy Definition">
+          <option value="Logical Formulas with Attributes">Logical Formulas with Attributes</option>
+          <option value="Relations">Relations</option>
+          <option value="Logical Connectives">Logical Connectives (name, parameter-list, body)</option>
+          <option value="Structure">Structure</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Policy Support for DAC">Policy Support for DAC</label>
+        <select id="Policy Support for DAC" name="Policy Support for DAC">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Policy Support for MAC">Policy Support for MAC</label>
+        <select id="Policy Support for MAC" name="Policy Support for MAC">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Environmental Attribute">Environmental Attribute</label>
+        <select id="Environmental Attribute" name="Environmental Attribute">
+          <option value="necessary">Necessary</option>
+          <option value="not-necessary">Not Necessary</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="History-based Policy Support">History-based Policy Support</label>
+        <select id="History-based Policy Support" name="History-based Policy Support">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Per-Object Review and Per-User Review of Combined Policies">Per-Object Review and Per-User Review of Combined Policies</label>
+        <select id="Per-Object Review and Per-User Review of Combined Policies" name="Per-Object Review and Per-User Review of Combined Policies">
+          <option value="necessary">Necessary</option>
+          <option value="not-necessary">Not Necessary</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Run-time changes of access control policies">Run-time changes of access control policies</label>
+        <select id="Run-time changes of access control policies" name="Run-time changes of access control policies">
+          <option value="necessary">Necessary</option>
+          <option value="not-necessary">Not Necessary</option>
+        </select>
+      </div>
+    </div> <!-- Closing first section div -->
+
+    <div class="section">
+      <h3>Language used to write policy</h3>
+      <div class="radio-group">
+        <input type="radio" id="XML based" name="languageUsed">
+        <label for="XML based">XML based</label>
+      </div>
+      <div class="radio-group">
+        <input type="radio" id="Relation-based" name="languageUsed">
+        <label for="Relation-based">Relation-based</label>
+      </div>
+      <div class="radio-group">
+        <input type="radio" id="Declarative & Logic Programming Language" name="languageUsed">
+        <label for="Declarative & Logic Programming Language">Declarative & Logic Programming Language</label>
+      </div>
+      <div class="radio-group">
+        <input type="radio" id="Domain Specific Language" name="languageUsed">
+        <label for="Domain Specific Language">Domain Specific Language</label>
+      </div>
+    </div> <!-- Closing second section div -->
+
+    <div class="section">
+      <h3>Language Usability</h3>
+      <div class="radio-group">
+        <input type="radio" id="Easy Readable and Easy Writeable" name="languageUsability">
+        <label for="Easy Readable and Easy Writeable">Easy Readable and Easy Writeable</label>
+      </div>
+      <div class="radio-group">
+        <input type="radio" id="Well Readable and Well Writeable" name="languageUsability">
+        <label for="Well Readable and Well Writeable">Well Readable and Well Writeable</label>
+      </div>
+      <div class="radio-group">
+        <input type="radio" id="Difficult Readable and Difficult Writeable" name="languageUsability">
+        <label for="Difficult Readable and Difficult Writeable">Difficult Readable and Difficult Writeable</label>
+      </div>
+    </div> <!-- Closing third section div -->
+
+    <div class="section">
+      <h3>Policy Administration</h3>
+      <div class="form-group">
+        <label for="GUI/Graph Based">GUI/Graph Based</label>
+        <select id="GUI/Graph Based" name="GUI/Graph Based">
+          <option value="Necessary">Necessary</option>
+          <option value="Not Necessary">Not Necessary</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Sandbox to test policies provided">Sandbox to test policies provided</label>
+        <select id="Sandbox to test policies provided" name="Sandbox to test policies provided">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="Administration and Management of Policies & Attributes">Administration and Management of Policies
+          & Attributes</label>
+        <select id="Administration and Management of Policies & Attributes" name="Administration and Management of Policies & Attributes">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+    </div> <!-- Closing fourth section div -->
+
+    <button type="button" onclick="recommendLanguages()">Recommend Languages</button>
+  </form>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

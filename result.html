@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommended Access Control Policy Languages</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #e9ecef;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    h1, h3 {
+      color: #007bff;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+    select:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+    button {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    td {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Recommended Access Control Policy Languages</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Select</th>
+      <th>Access Control Policy Language</th>
+      <th>Score</th>
+    </tr>
+    </thead>
+    <tbody id="language-table">
+    <!-- Rows will be added dynamically -->
+    </tbody>
+  </table>
+  <button id="compare-button" onclick="compareLanguages()">Compare Languages</button>
+</div>
+
+<script>
+  // Retrieve recommended languages from local storage
+  const recommendedLanguages = JSON.parse(localStorage.getItem('recommendedLanguages'));
+
+  // Display recommended languages with their scores
+  const languageTable = document.getElementById('language-table');
+  for (const [language, data] of Object.entries(recommendedLanguages)) {
+    const row = `<tr>
+                    <td><input type="checkbox" class="compare-checkbox" value="${language}"></td>
+                    <td>${language}</td>
+                    <td>${data.score}</td>
+                  </tr>`;
+    languageTable.innerHTML += row;
+  }
+
+  function compareLanguages() {
+    // Get selected languages
+    const selectedLanguages = Array.from(document.querySelectorAll('.compare-checkbox:checked'))
+      .map(checkbox => checkbox.value);
+
+    if (selectedLanguages.length < 2) {
+      alert("Please select at least two languages to compare.");
+      return;
+    }
+
+    // Store selected languages in local storage
+    localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages));
+
+    // Redirect to comparison page
+    window.location.href = 'compare.html';
+  }
+</script>
+</body>
+</html>

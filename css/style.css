@@ -1,0 +1,124 @@
+/* General body and layout settings */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Container settings */
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+/* Form section styling */
+.form-section {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Section headers */
+.form-section h3 {
+  margin-top: 0;
+}
+
+/* Flexbox layout for form groups */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Styling labels */
+.form-group label {
+  font-weight: bold;
+  /* Small margin to separate checkbox from text */
+  margin: 0 0 0 5px;
+  flex: 1;
+}
+
+/* Styling selects and checkboxes */
+.form-group select {
+  flex: 2;
+  margin-left: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Adjustments for checkboxes */
+.form-group input[type="checkbox"] {
+  /* Right margin to space between checkbox and label */
+  margin: 0 10px 0 0;
+  transform: scale(1.2); /* Optional: make the checkbox slightly larger */
+}
+
+/* Button styling */
+button {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* Button hover effect */
+button:hover {
+  background: #555;
+}
+
+/* Table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: #f4f4f4;
+}
+
+/* Hidden class */
+.hidden {
+  display: none;
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background: #333;
+  color: #fff;
+}
+input[type="radio"] {
+  margin: 0;
+  transform: scale(1.2);
+  vertical-align: middle;
+}
+
+input[type="radio"] + label {
+  margin-left: 5px; /* Adjust margin as needed */
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer; /* Makes it clickable */
+}
